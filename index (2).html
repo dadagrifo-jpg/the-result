@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CROISSANT — Види круасанів</title>
+  <style>
+    :root{
+      --white: #ffffff;
+      --muted-text: #6b4f3a;
+      --card-bg: rgba(255,255,255,0.98);
+      --page-bg: #f7f3ef;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--page-bg)}
+    /* HERO: фон + заголовок + кнопка (єдине, що видно на старті) */
+    .hero{
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      background-image: url('https://i.postimg.cc/Kc3hvkfK/Lucid-Origin-A-delicate-porcelain-platter-adorned-with-intrica-3.jpg');
+      background-size:cover;
+      background-position:center;
+      color:var(--white);
+      position:relative;
+      transition:opacity 450ms ease, transform 450ms ease;
+      will-change: opacity, transform;
+    }
+    .hero::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.45); /* затемнення для читабельності */
+      pointer-events:none;
+    }
+    .hero-inner{position:relative;z-index:2;padding:0 20px}
+    .hero h1{
+      margin:0 0 24px;
+      font-size:96px;
+      font-weight:900;
+      letter-spacing:6px;
+      text-transform:uppercase;
+      color:var(--white);
+      text-shadow:0 8px 30px rgba(0,0,0,0.6);
+    }
+    .hero button{
+      border:0;
+      padding:16px 36px;
+      font-size:18px;
+      font-weight:800;
+      background:#ffffff;
+      color:#222;
+      border-radius:12px;
+      cursor:pointer;
+      box-shadow:0 12px 30px rgba(0,0,0,0.28);
+      transition:transform 160ms ease, box-shadow 160ms ease;
+    }
+    .hero button:active{transform:translateY(1px)}
+    .hero.hidden{
+      opacity:0;
+      transform:translateY(-20px);
+      pointer-events:none;
+    }
+
+    /* MAIN (карточки) — спочатку приховано */
+    main{
+      display:none;
+      opacity:0;
+      transform:translateY(12px);
+      transition:opacity 420ms ease, transform 420ms ease;
+      padding:48px 20px 80px;
+    }
+    main.visible{
+      display:block;
+      opacity:1;
+      transform:none;
+    }
+
+    /* Карточки — БІЛЬШІ (збільшений масштаб) */
+    .cards{
+      max-width:1400px;
+      margin:0 auto;
+      display:grid;
+      /* два стовпці великих карточок на великих екранах */
+      grid-template-columns: repeat(auto-fit, minmax(480px,1fr));
+      gap:36px;
+    }
+    .card{
+      background:var(--card-bg);
+      border-radius:20px;
+      padding:20px;
+      box-shadow:0 18px 40px rgba(15,15,15,0.08);
+      text-align:center;
+      overflow:hidden;
+      transition:transform 220ms ease, box-shadow 220ms ease;
+    }
+    .card:hover{
+      transform:translateY(-8px) scale(1.02);
+      box-shadow:0 30px 60px rgba(15,15,15,0.12);
+    }
+    .card img{
+      width:100%;
+      height:360px; /* велике зображення */
+      object-fit:cover;
+      border-radius:14px;
+      display:block;
+    }
+    .card h3{
+      margin:16px 0 8px;
+      font-size:28px;
+    }
+    .card p{
+      margin:0;
+      font-size:18px;
+      color:var(--muted-text);
+    }
+
+    footer{text-align:center;padding:28px;color:#8b6b55}
+
+    /* адаптивність */
+    @media (max-width:1100px){
+      .hero h1{font-size:64px}
+      .card img{height:300px}
+      .card h3{font-size:24px}
+    }
+    @media (max-width:720px){
+      .hero h1{font-size:44px}
+      .hero button{font-size:16px;padding:12px 20px}
+      .cards{grid-template-columns: 1fr; gap:20px}
+      .card img{height:220px}
+      .card h3{font-size:20px}
+      .card p{font-size:16px}
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- HERO: лише фон, заголовок і кнопка -->
+  <section class="hero" id="hero" role="img" aria-label="Головна сторінка">
+    <div class="hero-inner">
+      <h1>CROISSANT</h1>
+      <button id="nextBtn" aria-label="Далі">Далі</button>
+    </div>
+  </section>
+
+  <!-- MAIN: нижня секція з великими карточками (за замовчуванням прихована) -->
+  <main id="content" aria-label="Види круасанів">
+    <div class="cards" role="list">
+      <!-- 8 великих карточок -->
+      <article class="card" role="listitem">
+        <a href="https://dadagrifo-jpg.github.io/ryry/"><img src="https://i.postimg.cc/rm36NMVs/Lucid-Origin-GENERATE-A-DELICIOUS-CLASSIC-CROISSANT-WITH-FLAKY-3.jpg" alt="Класичний круасан"></a>
+        <h3>Класичний круасан</h3>
+        <p>Начинка: масляний (без начинки)</p>
+      </article>
+
+      <article class="card" role="listitem">
+         <a href=" https://dadagrifo-jpg.github.io/-/"><img src="https://i.postimg.cc/0N4pC24F/Chat-GPT-Image-15-noab-2025-g-14-38-19.png" alt="Шоколадний круасан"></a>
+        <h3>Шоколадний круасан</h3>
+        <p>Начинка: шоколадна паста</p>
+      </article>
+
+      <article class="card" role="listitem">
+        <a href=" https://dadagrifo-jpg.github.io/lplp/"><img src="https://i.postimg.cc/W4YQ6gjS/Al'mondnyj-kruassan-na-mramore.png" alt="Мигдальний круасан"> </a>
+        <h3>Мигдальний круасан</h3>
+        <p>Начинка: мигдальна паста і крошка</p>
+      </article>
+
+      <article class="card" role="listitem">
+        <a href="https://dadagrifo-jpg.github.io/ipip/"><img src="https://i.postimg.cc/T3c9tDHN/Chat-GPT-Image-22-noab-2025-g-13-37-21.png" alt="Фруктовий круасан"> </a>
+        <h3>Ягідний</h3>
+        <p>Начинка: полуниця або мікс ягід</p>
+      </article>
+
+      <article class="card" role="listitem">
+       <a href="https://dadagrifo-jpg.github.io/pkpk/" ><img src="https://i.postimg.cc/cL4Fq2sc/Chat-GPT-Image-22-noab-2025-g-13-53-41.png" alt="Карамельний круасан"></a>
+
+        <h3>Карамельний круасан</h3>
+        <p>Начинка: солона карамель</p>
+      </article>
+
+      <article class="card" role="listitem">
+       <a href="https://dadagrifo-jpg.github.io/plpl/" > <img src="https://i.postimg.cc/gkn3pWCQ/Chat-GPT-Image-22-noab-2025-g-14-28-51.png" alt="Ванільний круасан"> </a>
+        <h3>Ванільний круасан</h3>
+        <p>Начинка: ванільний крем</p>
+      </article>
+
+      <article class="card" role="listitem">
+       <a href="https://dadagrifo-jpg.github.io/pypy/"> <img src="https://i.postimg.cc/QMtVw51S/Chat-GPT-Image-22-noab-2025-g-14-38-19.png" alt="Сирний круасан"> </a>
+        <h3>Сирний круасан</h3>
+        <p>Начинка: вершковий сир</p>
+      </article>
+
+      <article class="card" role="listitem">
+      <a href="https://dadagrifo-jpg.github.io/last-part/"> <img src="https://i.postimg.cc/bv3FM8cP/Sokoladnyj-kruassan-s-visnej.png" alt="Вешнево-шоколадний"> </a> 
+        <h3>Вешнево-шоколадний</h3>
+        <p>Начинка: вишня та шоколад</p>
+      </article>
+    </div>
+  </main>
+
+  <footer>&copy; Пекарня — Види круасанів</footer>
+
+  <script>
+    // Поведінка кнопки Далі:
+    // 1) плавно ховаємо hero (fade out)
+    // 2) показуємо main (cards) — без залишків hero на екрані
+    (function(){
+      const btn = document.getElementById('nextBtn');
+      const hero = document.getElementById('hero');
+      const main = document.getElementById('content');
+
+      btn.addEventListener('click', function(){
+        // Починаємо анімацію зникнення головної секції
+        hero.classList.add('hidden');
+
+        // Коли анімація приховування завершиться — прибираємо hero з потоку і показуємо main
+        // Тут слухаємо закінчення transition для надійності
+        const onTransitionEnd = function(e){
+          if(e.propertyName && (e.propertyName === 'opacity' || e.propertyName === 'transform')){
+            hero.style.display = 'none';
+            hero.removeEventListener('transitionend', onTransitionEnd);
+            // Показуємо main і даємо можливість анімації "появи"
+            main.classList.add('visible');
+            // Прокручуємо на початок сторінки, щоб був видимий контент (особливо на мобілці)
+            window.scrollTo({top:0,behavior:'smooth'});
+          }
+        };
+
+        // Якщо перехід встановлений — чекаємо подію
+        hero.addEventListener('transitionend', onTransitionEnd);
+
+        // На випадок, якщо transitionend не спрацює (старі браузери), ставимо резервний таймаут
+        setTimeout(() => {
+          if(hero.style.display !== 'none'){
+            hero.style.display = 'none';
+            main.classList.add('visible');
+            window.scrollTo({top:0,behavior:'smooth'});
+          }
+        }, 700);
+      });
+    })();
+  </script>
+
+</body>
+</html>
